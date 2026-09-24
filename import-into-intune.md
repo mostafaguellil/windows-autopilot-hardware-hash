@@ -17,7 +17,8 @@ Upload `AutopilotHWID.csv`, confirm that Intune accepts it, and verify that the 
 
 4. In **Add Autopilot devices**, browse to `AutopilotHWID.csv` and select it.
 5. Wait for validation. Confirm that **Rows formatted correctly** matches the expected number of devices and that no formatting error appears.
-6. Select **Import** and keep the page open until Intune confirms that the import has started or completed.
+6. Select **Import** and keep the page open until Intune confirms that the import has started or completed.<img width="490" height="129" alt="image" src="https://github.com/user-attachments/assets/e3a2dfeb-2825-4fb9-8782-ff8461c95049" />
+
 7. Return to **Windows Autopilot devices**, select **Refresh**, and search for the exact serial number. Synchronization can take several minutes.
 8. Verify the serial number, manufacturer, model, group tag if used, Microsoft Entra group membership, and Autopilot deployment profile status.
 9. Leave the device at, or return it to, Windows OOBE for the end user.
