@@ -1,38 +1,38 @@
 # Windows Autopilot Hardware Hash
 
-Projet opérationnel pour récupérer le hash matériel Windows Autopilot d'un ordinateur neuf ou réinitialisé depuis l'écran OOBE, enregistrer le fichier CSV sur une clé USB, puis l'importer dans Microsoft Intune.
+An operational project for retrieving the Windows Autopilot hardware hash from a new or reset computer during OOBE, saving the CSV file to a USB drive, and importing it into Microsoft Intune.
 
-## Ce que contient le projet
+## Project contents
 
-- `Get-AutopilotHash.bat` : fichier unique à placer sur la clé USB.
-- `collect-hardware-hash.md` : procédure de collecte depuis l'OOBE.
-- `import-into-intune.md` : procédure d'import et de vérification dans Intune.
+- `Get-AutopilotHash.bat`: the only file that needs to be placed on the USB drive.
+- `collect-hardware-hash.md`: the hardware hash collection procedure for Windows OOBE.
+- `import-into-intune.md`: the Microsoft Intune import and verification procedure.
 
-## Utilisation rapide
+## Quick start
 
-1. Copiez `Get-AutopilotHash.bat` à la racine d'une clé USB.
-2. Démarrez le PC et restez sur l'écran OOBE.
-3. Connectez le PC à Internet et branchez la clé USB.
-4. Appuyez sur `Shift + F10` (ou `Shift + Fn + F10`).
-5. Dans l'invite de commandes, ouvrez la clé USB, par exemple `E:`, puis lancez `Get-AutopilotHash.bat`.
-6. Confirmez la collecte lorsque le script le demande.
-7. Vérifiez que `AutopilotHWID.csv` se trouve sur la clé USB.
-8. Importez le CSV dans Microsoft Intune en suivant [la procédure d'import](import-into-intune.md).
+1. Copy `Get-AutopilotHash.bat` to the root of a USB drive.
+2. Start the computer and remain on the Windows OOBE screen.
+3. Connect the computer to the Internet and insert the USB drive.
+4. Press `Shift + F10` or, on some laptops, `Shift + Fn + F10`.
+5. In Command Prompt, open the USB drive—for example, enter `E:`—and run `Get-AutopilotHash.bat`.
+6. Confirm the collection when prompted.
+7. Verify that `AutopilotHWID.csv` has been saved to the USB drive.
+8. Import the CSV into Microsoft Intune by following the [Intune import procedure](import-into-intune.md).
 
-> Ne terminez pas l'installation de Windows et ne créez pas de compte Microsoft personnel avant la collecte.
+> Do not complete Windows setup or create a personal Microsoft account before collecting the hardware hash.
 
-## Fonctionnement du script
+## How the script works
 
-Le script utilise automatiquement le lecteur depuis lequel le fichier `.bat` est exécuté. Il installe le script Microsoft `Get-WindowsAutopilotInfo` depuis PowerShell Gallery, récupère le hash matériel, puis écrit `AutopilotHWID.csv` sur la même clé USB.
+The script automatically uses the drive from which the `.bat` file is running. It installs Microsoft's `Get-WindowsAutopilotInfo` script from PowerShell Gallery, collects the hardware hash, and saves `AutopilotHWID.csv` to the same USB drive.
 
-Une connexion Internet est nécessaire. PowerShell peut demander d'installer NuGet ou de faire confiance à PSGallery.
+An Internet connection is required. PowerShell may need to install the NuGet provider and trust PowerShell Gallery.
 
-## Limite du zero touch
+## Zero-touch limitation
 
-Cette méthode simplifie l'intervention, mais nécessite toujours une action technique sur l'appareil avant son attribution à l'utilisateur. Pour un déploiement réellement sans intervention préalable, le fournisseur ou le partenaire doit enregistrer l'appareil dans Windows Autopilot avant sa livraison.
+This method simplifies the technician's work, but it still requires technical intervention on the device before it is assigned to the end user. For a genuinely zero-touch deployment, the hardware vendor or partner must register the device with Windows Autopilot before delivery.
 
-## Sécurité et validation
+## Security and validation
 
-- Exécutez le script uniquement sur des appareils appartenant à votre organisation ou pour lesquels vous êtes autorisé à collecter les informations matérielles.
-- Ne modifiez pas les en-têtes ou les valeurs du CSV avant l'import.
-- Après l'import, vérifiez le numéro de série, l'appartenance au groupe Microsoft Entra et l'affectation du profil Autopilot.
+- Run the script only on devices owned by your organization or on devices for which you are authorized to collect hardware information.
+- Do not change the CSV column headers or values before importing it.
+- After import, verify the serial number, Microsoft Entra group membership, and Autopilot deployment profile assignment.
