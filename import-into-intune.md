@@ -13,7 +13,8 @@ Upload `AutopilotHWID.csv`, confirm that Intune accepts it, and verify that the 
 
 1. Sign in to the Microsoft Intune admin center.
 2. Go to **Devices > Windows > Windows enrollment > Windows Autopilot devices**.
-3. Select **Import**.
+3. Select **Import**.<img width="490" height="186" alt="image" src="https://github.com/user-attachments/assets/e58727b7-f85c-4c44-b170-71ab276c7ee5" />
+
 4. In **Add Autopilot devices**, browse to `AutopilotHWID.csv` and select it.
 5. Wait for validation. Confirm that **Rows formatted correctly** matches the expected number of devices and that no formatting error appears.
 6. Select **Import** and keep the page open until Intune confirms that the import has started or completed.
